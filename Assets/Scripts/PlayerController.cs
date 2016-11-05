@@ -5,15 +5,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
-    public float jump;
     public Text countText;
     public Text winText;
     public bool grounded = false;   
 
     private Rigidbody rb;
     private int count;
-
+    private float brk = 0.0f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,16 +28,10 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        rb.AddForce(movement * speed);
-
-        if (Input.GetButtonDown("Jump") && grounded)
+        while (rb.velocity.x != 0.0f && rb.velocity.z != 0.0f)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jump, rb.velocity.z);
+            if (grounded && Input.GetButtonDown("Fire1"))
+                rb.AddForce(new Vector3(rb.velocity.x, 0.0f, rb.velocity.z) * brk);
         }
     }
     void OnCollisionStay()
