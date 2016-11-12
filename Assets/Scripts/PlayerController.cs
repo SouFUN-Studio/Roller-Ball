@@ -28,9 +28,8 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        while (rb.velocity.x != 0.0f && rb.velocity.z != 0.0f)
         {
-            if (grounded && Input.GetButtonDown("Fire1"))
+            if (grounded && Input.GetButtonDown("Fire1") && rb.velocity != new Vector3(0,0,0))
                 rb.AddForce(new Vector3(rb.velocity.x, 0.0f, rb.velocity.z) * brk);
         }
     }
