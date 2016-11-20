@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
         {
-            if (grounded && Input.GetButtonDown("Fire1") && rb.velocity != new Vector3(0,0,0))
-                rb.AddForce(new Vector3(rb.velocity.x, 0.0f, rb.velocity.z) * brk);
+            if (grounded && Input.GetButtonDown("Fire1") && rb.velocity != new Vector3(0, 0, 0))
+                rb.drag = rb.drag + 0.5f;
         }
     }
     void OnCollisionStay()
